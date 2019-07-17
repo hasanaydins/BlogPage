@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+    <header class="masthead" style="background-image: url('https://cdn.pixabay.com/photo/2019/07/13/11/58/bachalpsee-4334666_960_720.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>Admin Dashboard</h1>
+                        <span class="subheading">This is what I do.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <div class="container">
+            <% adminActions.forEach( (action) => { %>
+
+            <div class="row">
+                <div class="col-lg-4 mx-auto">
+                    <button id="<%= action.actionId %>" onclick="catchId(this.id)" type="button" class="btn btn-outline-primary btn-block"><%= action.displayName %></button>
+                </div>
+
+            </div>
+            <%  }); %>
+            <div class="col-lg-8 mx-auto">
+
+            </div>
+        </div>
+
+<script>
+    function catchId(id) {
+        alert(id + "ye tıkladınız" );
+    }
+</script>
+
+<% include ../partials/footer %>
