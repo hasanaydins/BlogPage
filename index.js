@@ -14,7 +14,7 @@ const adminRoutes = require('./routes/adminRoutes');
 
 
 // App Config
-mongoose.connect("mongodb://localhost/BlogApp");
+mongoose.connect("mongodb://localhost/BlogApp",{ useNewUrlParser: true });
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: "true"}));

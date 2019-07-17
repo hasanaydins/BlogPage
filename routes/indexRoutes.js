@@ -37,6 +37,9 @@ router.get('/resume', (req, res) => {
 router.get('/signin', (req, res) => {
     res.render('admin/signin');
 });
+router.get('/signup', (req, res) => {
+    res.render('admin/signup');
+});
 
 module.exports = router;
 
