@@ -41,5 +41,5 @@ router.get('/signup', (req, res) => {
     res.render('admin/signup');
 });
 
-module.exports = router;
+    module.exports = router;
 

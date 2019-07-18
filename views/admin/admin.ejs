@@ -21,7 +21,7 @@
                 <div class="col-lg-4 mx-auto">
                     <button id="<%= action.actionId %>" onclick="catchId(this.id)" type="button" class="btn btn-outline-primary btn-block"><%= action.displayName %></button>
                 </div>
-                <div class="col-lg-8 mx-auto">ssssss
+                <div class="col-lg-8 mx-auto">
                 </div>
 
             </div>
@@ -34,6 +34,9 @@
 <script>
     function catchId(id) {
         alert(id + "ye tıkladınız" );
+        if(id == 4) {
+            window.location.href="new-blog"; return false;
+        }
     }
 </script>
 

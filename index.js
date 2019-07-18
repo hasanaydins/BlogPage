@@ -11,6 +11,7 @@ const   express              = require('express'),
 // Routes
 const indexRoutes = require('./routes/indexRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 
 // App Config
@@ -32,9 +33,15 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+ // Share user info
+app.use((req, res, next) => {
+   res.locals.currentUser = req.user;
+   next();
+});
 // Routes Using
 app.use(indexRoutes);
 app.use(adminRoutes);
+app.use(blogRoutes);
 
 
 const server = app.listen(3000, (err) => {

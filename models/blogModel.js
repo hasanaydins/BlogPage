@@ -7,3 +7,6 @@ var blogSchema  = new mongoose.Schema({
         blog:           {type: String, required: "Can not be empty"},
         date:           {type: Date, default: Date.now}
 });
+
+
+module.exports = mongoose.model("Blog", blogSchema);

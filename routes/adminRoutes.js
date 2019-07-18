@@ -1,6 +1,8 @@
-const express = require('express'),
-      User    = require('../models/userModel'),
-    router  = express.Router();
+const express       = require('express'),
+      User          = require('../models/userModel'),
+      passport      = require('passport');
+
+router  = express.Router();
 
 let adminActions = [
     {
@@ -38,16 +40,32 @@ router.get('/admin', (req, res) => {
 router.get('/signin', (req, res) => {
     res.render('admin/signin');
 });
-router.post('/signin', (req, res) => {
-    console.log(req.body);
-
+router.post('/signin', passport.authenticate("local",
+    {
+        successRedirect: "/",
+        failureRedirect: "/signin"
+}
+),(req, res)=> {
 });
+
 router.get('/signup', (req, res) => {
     res.render('admin/signup');
 });
 router.post('/signup', (req, res) => {
-    console.log(req.body);
-   // let newUser = new User();
+    let newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, (err,user) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/signup");
+        }
+            passport.authenticate("local") (req, res, () => {
+               res.redirect("/");
+            });
+    })
+});
+router.get("/signout", (req,res) => {
+    req.logout();
+    res.redirect("/");
 });
 
 module.exports = router;
