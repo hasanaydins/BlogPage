@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <h1>Blog</h1>
+                        <span class="subheading">A Blog Theme by hasan</span>
                     </div>
                 </div>
             </div>
@@ -19,27 +19,26 @@
     <!-- Main Content -->
     <div class="container">
 
-        <% data.forEach( (d) => { %>
+        <% foundBlogs.forEach( (blog) => { %>
 
 
         <div class="row">
             <div class="col-lg-3 mx-auto">
-                <img class="img-thumbnail" src="<%= d.image %>" alt="blog images">
+                <img class="img-thumbnail" src="<%= blog.comImage %>" alt="blog images">
             </div>
 
             <div class="col-lg-9 mx-auto">
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="/blogs/<%=blog._id %>">
                         <h2 class="post-title">
-                            <%=    d.postTitle %>
+                            <%=    blog.title %>
                         </h2>
                         <h3 class="post-subtitle">
-                            <%=    d.subTitle %>
+                            <%=    blog.comSentence %>
                         </h3>
                     </a>
                     <p class="post-meta">Posted by
-                        <a href="#">Start Bootstrap</a>
-                        on September 24, 2019</p>
+                        <a href="#">hsn</a> <%=  blog.date %></p>
                 </div>
                 <hr>
 

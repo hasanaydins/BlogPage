@@ -31,10 +31,18 @@ let adminActions = [
         displayName: "list All Blogs"
     }
 ];
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next;
+    }
+    else {
+        res.redirect("/signin");
+    }
+
+};
 
 
-
-router.get('/admin', (req, res) => {
+router.get('/admin', isLoggedIn, (req, res) => {
     res.render('admin/admin', {adminActions:adminActions});
 });
 router.get('/signin', (req, res) => {
@@ -51,7 +59,7 @@ router.post('/signin', passport.authenticate("local",
 router.get('/signup', (req, res) => {
     res.render('admin/signup');
 });
-router.post('/signup', (req, res) => {
+router.post('/signup',isLoggedIn, (req, res) => {
     let newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err,user) => {
         if(err) {
@@ -67,5 +75,7 @@ router.get("/signout", (req,res) => {
     req.logout();
     res.redirect("/");
 });
+
+
 
 module.exports = router;
